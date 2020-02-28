@@ -86,7 +86,7 @@ export default {
       this.wait = true
       this.btntext = "Please wait"
         this.$http
-          .get(`http://api.github.com/users/${this.user}`)
+          .get(`https://api.github.com/users/${this.user}`)
           .then(response => {
             this.data = response.data;
             localStorage.setItem('data', JSON.stringify(response.data));
