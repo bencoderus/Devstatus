@@ -1,8 +1,36 @@
 import Vue from 'vue'
 import App from './App.vue'
+import './registerServiceWorker'
+import axios from 'axios';
+import VueRouter from 'vue-router'
+import routes from './router'
+import VueProgressBar from 'vue-progressbar';
+import wb from "./registerServiceWorker";
+import './filters';
+Vue.prototype.$workbox = wb;
 
-Vue.config.productionTip = false
+
+
+Vue.use(VueProgressBar, {
+  color: 'rgb(143, 255, 199)',
+  failedColor: 'red',
+  height: '2px'
+});
+
+Vue.use(VueRouter)
+
+Vue.prototype.$http = axios;
+Vue.config.productionTip = true
+
+const router = new VueRouter({
+  mode: "history",
+  base: process.env.BASE_URL,
+  routes
+});
+
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+  router,
+  render: h => h(App)
+}).$mount("#app");
+
