@@ -1,5 +1,6 @@
 # devstatus
-
+It is an open source app that provides users with a fast medium to review developers account on
+Github.
 ## Project setup
 ```
 npm install
@@ -19,6 +20,9 @@ npm run build
 ```
 npm run lint
 ```
+
+### Demo
+https://gitdevstat.netlify.com/
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
