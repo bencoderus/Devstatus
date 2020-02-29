@@ -1,4 +1,4 @@
-# devstatus
+# Devstatus
 It is an open source app that provides users with a fast medium to review developers account on
 Github.
 ## Project setup
