@@ -6,8 +6,7 @@
         <div class="info-holder">
           <h3>Git Developer Status.</h3>
           <p>
-            Access to the most powerfull tool in the entire design and web
-            industry.
+          Provides you with a fast medium to review developers account on Github.
           </p>
           <img src="images/graphic1.svg" alt="" />
         </div>
@@ -32,21 +31,13 @@
               v-show="error || success"
             >
               {{ msg }}
-              <button
-                type="button"
-                class="close"
-                data-dismiss="alert"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
             </div>
             <form @submit.prevent="check()">
               <input
                 class="form-control"
                 type="text"
                 v-model="user"
-                placeholder="Your Git Username"
+                placeholder="Enter Github Username"
               />
               <div class="form-button">
                 <button id="submit" :disabled="wait" type="submit" class="btn-block p-2 ibtn">

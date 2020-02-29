@@ -6,8 +6,7 @@
         <div class="info-holder">
           <h3>Git Developer Status.</h3>
           <p>
-            Access to the most powerfull tool in the entire design and web
-            industry.
+          Provides you with a fast medium to review developers account on Github.
           </p>
           <img src="images/graphic1.svg" alt="" />
         </div>
@@ -17,7 +16,7 @@
           <div class="form-items">
             <div class="website-logo-inside">
               <a href="/">
-                  <h3>Developer Status</h3>
+                  <h3>About Developer</h3>
               </a>
             </div>
             <div class="page-links">
@@ -35,7 +34,7 @@
                 Respositories: {{data.public_repos}}
               </p>
               <p>Location: {{data.location | checknull}}</p>
-              <p>Website: {{data.blog | checknull}}</p>
+              <p>Website: <a :href="data.blog" class="text-white" target="_blank">{{data.blog | checknull}}</a> </p>
               <p>Status: {{data.public_repos | status}}</p>
               <p>Joined: {{data.created_at | formatdate}}</p>
 
