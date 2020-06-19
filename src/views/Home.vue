@@ -6,7 +6,8 @@
         <div class="info-holder">
           <h3>Git Developer Status.</h3>
           <p>
-          Provides you with a fast medium to review developers account on Github.
+            Provides you with a fast medium to review developers account on
+            Github.
           </p>
           <img src="images/graphic1.svg" alt="" />
         </div>
@@ -16,12 +17,14 @@
           <div class="form-items">
             <div class="website-logo-inside">
               <a href="/">
-                  <h3>Developer Status</h3>
+                <h3>Developer Status</h3>
               </a>
             </div>
             <div class="page-links">
               <router-link to="/"><a class="active">Check</a></router-link>
-              <router-link to="/status"><a v-show="success">Status</a></router-link>
+              <router-link to="/status"
+                ><a v-show="success">Status</a></router-link
+              >
             </div>
 
             <div
@@ -40,12 +43,16 @@
                 placeholder="Enter Github Username"
               />
               <div class="form-button">
-                <button id="submit" :disabled="wait" type="submit" class="btn-block p-2 ibtn">
-                  {{btntext}}
+                <button
+                  id="submit"
+                  :disabled="wait"
+                  type="submit"
+                  class="btn-block p-2 ibtn"
+                >
+                  {{ btntext }}
                 </button>
               </div>
             </form>
-            
           </div>
         </div>
       </div>
@@ -54,76 +61,75 @@
 </template>
 
 <script>
-// import axios from "axios";
 export default {
-  name: "App",
-  data() {
+  name: 'App',
+  data () {
     return {
-      user: "",
+      user: '',
       data: {},
       error: false,
       success: false,
-      msg: "",
+      msg: '',
       wait: false,
-      btntext: "Check Status"
-
-    };
+      btntext: 'Check Status'
+    }
   },
   methods: {
-    check() {
-      this.validate(this.user);
+    check () {
+      this.validate(this.user)
       if (!this.error) {
-      this.$Progress.start()
-      this.wait = true
-      this.btntext = "Please wait"
+        this.$loader.start()
+
+        this.wait = true
+        this.btntext = 'Please wait'
         this.$http
           .get(`https://api.github.com/users/${this.user}`)
           .then(response => {
-            this.data = response.data;
-            localStorage.setItem('data', JSON.stringify(response.data));
-            this.success =true;
+            this.data = response.data
+            localStorage.setItem('data', JSON.stringify(response.data))
+            this.success = true
             this.wait = false
-            this.btntext = "Check again"
-            this.msg ="Data fetched successfully, you can check your staus now.";
-            this.$Progress.finish()
-            this.$router.push({name: 'status'});
+            this.btntext = 'Check again'
+            this.msg =
+              'Data fetched successfully, you can check your staus now.'
+            this.$loader.done()
+            this.$router.push({ name: 'status' })
           })
           .catch(error => {
             console.log(error)
-            this.success =false;
-            this.error=true;
+            this.success = false
+            this.error = true
             this.wait = false
-            this.btntext = "Check again"
-            if(!error.response){
-            this.msg = "Please connect to the internet first";
+            this.btntext = 'Check again'
+            if (!error.response) {
+              this.msg = 'Please connect to the internet first'
+            } else {
+              this.msg = 'User Not found'
             }
-            else{
-            this.msg = "User Not found";
-            }
-            this.$Progress.finish()
-          });
+            this.$loader.done()
+          })
       }
     },
-    validate(user) {
+    validate (user) {
       if (!user) {
-        this.success =false;
-        this.error = true;
-        this.msg = "Please add your Github username first!";
+        this.success = false
+        this.error = true
+        this.msg = 'Please add your Github username first!'
       } else if (user.length < 4) {
-        this.error = true;
-        this.success =false;
-        this.msg = "Your Github username is too short";
+        this.error = true
+        this.success = false
+        this.msg = 'Your Github username is too short'
       } else if (user.length >= 25) {
-        this.error = true;
-        this.success =false;
-        this.msg = "Your Github username is too long";
+        this.error = true
+        this.success = false
+        this.msg = 'Your Github username is too long'
       } else {
-        this.error = false;
-        this.success =false;
+        this.error = false
+        this.success = false
       }
     }
   }
-};
+}
 </script>
 
 <style></style>
