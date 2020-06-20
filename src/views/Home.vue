@@ -1,68 +1,57 @@
 <template>
-  <div class="form-body">
-    <div class="row">
-      <div class="img-holder">
-        <div class="bg"></div>
-        <div class="info-holder">
-          <h3>Git Developer Status.</h3>
-          <p>
-            Provides you with a fast medium to review developers account on
-            Github.
-          </p>
-          <img src="images/graphic1.svg" alt="" />
-        </div>
-      </div>
-      <div class="form-holder">
-        <div class="form-content">
-          <div class="form-items">
-            <div class="website-logo-inside">
-              <a href="/">
-                <h3>Developer Status</h3>
-              </a>
-            </div>
-            <div class="page-links">
-              <router-link to="/"><a class="active">Check</a></router-link>
-              <router-link to="/status"
-                ><a v-show="success">Status</a></router-link
-              >
-            </div>
-
-            <div
-              class="alert alert-dismissible fade show"
-              :class="[success ? 'alert-success' : 'alert-warning']"
-              role="alert"
-              v-show="error || success"
-            >
-              {{ msg }}
-            </div>
-            <form @submit.prevent="check()">
-              <input
-                class="form-control"
-                type="text"
-                v-model="user"
-                placeholder="Enter Github Username"
-              />
-              <div class="form-button">
-                <button
-                  id="submit"
-                  :disabled="wait"
-                  type="submit"
-                  class="btn-block p-2 ibtn"
-                >
-                  {{ btntext }}
-                </button>
-              </div>
-            </form>
+  <home>
+    <div class="form-holder">
+      <div class="form-content">
+        <div class="form-items">
+          <div class="website-logo-inside">
+            <h3>Developer Status</h3>
           </div>
+          <div class="page-links">
+            <router-link to="/"><a class="active">Check</a></router-link>
+            <router-link to="/status"
+              ><a v-show="success">Status</a></router-link
+            >
+          </div>
+
+          <div
+            class="alert alert-dismissible fade show"
+            :class="[success ? 'alert-success' : 'alert-warning']"
+            role="alert"
+            v-show="error || success"
+          >
+            {{ msg }}
+          </div>
+          <form @submit.prevent="check()">
+            <input
+              class="form-control"
+              type="text"
+              v-model="user"
+              placeholder="Enter Github Username"
+            />
+            <div class="form-button">
+              <button
+                id="submit"
+                :disabled="wait"
+                type="submit"
+                class="btn-block p-2 ibtn"
+              >
+                {{ btntext }}
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-  </div>
+  </home>
 </template>
 
 <script>
+import Home from './layouts/Main.vue'
 export default {
   name: 'App',
+  components: {
+    Home
+  },
   data () {
     return {
       user: '',

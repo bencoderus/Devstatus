@@ -45,7 +45,7 @@ body {
   height: 100%;
 }
 .text-sm {
-  font-size: 10px;
+  font-size: 0.9em !important;
 }
 .website-logo {
   display: inline-block;
